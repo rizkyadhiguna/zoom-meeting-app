@@ -10,37 +10,38 @@ import (
 	"time"
 
 	"database/sql"
+
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
 type ZoomMeetingRequest struct {
-	Topic      string    `json:"topic"`
-	StartTime  time.Time `json:"start_time"`
-	Duration   int       `json:"duration"`
-	Timezone   string    `json:"timezone"`
-	Password   string    `json:"password"`
-	Settings   map[string]interface{} `json:"settings,omitempty"`
+	Topic     string                 `json:"topic"`
+	StartTime time.Time              `json:"start_time"`
+	Duration  int                    `json:"duration"`
+	Timezone  string                 `json:"timezone"`
+	Password  string                 `json:"password"`
+	Settings  map[string]interface{} `json:"settings,omitempty"`
 }
 
 type ZoomMeetingResponse struct {
-	ID             int    `json:"id"`
-	UUID           string `json:"uuid"`
-	HostID         string `json:"host_id"`
-	JoinURL        string `json:"join_url"`
-	StartURL       string `json:"start_url"`
-	Topic          string `json:"topic"`
-	StartTime      string `json:"start_time"`
-	Duration       int    `json:"duration"`
-	Timezone       string `json:"timezone"`
-	CreatedAt      string `json:"created_at"`
-	Password       string `json:"password"`
-	H323Password   string `json:"h323_password"`
-	Pmi            int    `json:"pmi"`
-	MeetingType    int    `json:"type"`
-	Status         string `json:"status"`
-	EncryptedPassword string `json:"encrypted_password"`
-	Settings       map[string]interface{} `json:"settings"`
+	ID                int                    `json:"id"`
+	UUID              string                 `json:"uuid"`
+	HostID            string                 `json:"host_id"`
+	JoinURL           string                 `json:"join_url"`
+	StartURL          string                 `json:"start_url"`
+	Topic             string                 `json:"topic"`
+	StartTime         string                 `json:"start_time"`
+	Duration          int                    `json:"duration"`
+	Timezone          string                 `json:"timezone"`
+	CreatedAt         string                 `json:"created_at"`
+	Password          string                 `json:"password"`
+	H323Password      string                 `json:"h323_password"`
+	Pmi               int                    `json:"pmi"`
+	MeetingType       int                    `json:"type"`
+	Status            string                 `json:"status"`
+	EncryptedPassword string                 `json:"encrypted_password"`
+	Settings          map[string]interface{} `json:"settings"`
 }
 
 func main() {
@@ -67,7 +68,7 @@ func createMeetingHandler(w http.ResponseWriter, r *http.Request) {
 
 	zoomAPIKey := os.Getenv("ZOOM_API_KEY")
 	zoomAPISecret := os.Getenv("ZOOM_API_SECRET")
-	zoomEndpoint := "https://api.zoom.us/v2/users/rizkyadhiguna/meetings"
+	zoomEndpoint := "https://api.zoom.us/v2/users/me/meetings"
 
 	zoomRequestBody := map[string]interface{}{
 		"topic":      req.Topic,
