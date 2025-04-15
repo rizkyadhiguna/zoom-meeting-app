@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, FormEvent, useEffect } from 'react';
-import { useRouter } from 'next/navigation'; // For redirecting in the client
+import React, { useState, FormEvent } from 'react';
 
 interface CreateMeetingFormProps {}
 
@@ -38,11 +37,6 @@ const CreateMeetingForm: React.FC<CreateMeetingFormProps> = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
-  const router = useRouter(); // Hook to access the router
-
-  const handleConnectZoom = () => {
-    window.location.href = '/api/zoom/auth';
-  };
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -89,7 +83,6 @@ const CreateMeetingForm: React.FC<CreateMeetingFormProps> = () => {
   return (
     <div>
       <h2>Create New Zoom Meeting</h2>
-      <button onClick={handleConnectZoom}>Connect to Zoom</button>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="topic">Topic:</label>
